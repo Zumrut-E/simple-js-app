@@ -4,20 +4,7 @@ let pokemonList = [
     { name: 'Smoochum', height: 0.4, types: ['psychic', 'ice'] }
 ];
 
-// Exercise Part 1
-/* for (let i = 0; i < pokemonList.length; i++) {
-    document.write(pokemonList[i].name + " " + "height: " + pokemonList[i].height + " ");
-} */
-/* 
-for (let i = 0; i < pokemonList.length; i++) {
-    if (pokemonList[i].height > 1.5) {
-        document.write(pokemonList[i].name + " " + "height: " + pokemonList[i].height + " " + " -Wow, That is big!" + " ")
-    } else {
-        document.write(pokemonList[i].name + " " + "height: " + pokemonList[i].height + " ");
-    }
-} */
-
-
+// forEach Method
 pokemonList.forEach(function (pokemon) {
     document.write(pokemon.name + " " + "height: " + pokemon.height + " " + "type: " + pokemon.types + " ");
 });
@@ -34,13 +21,43 @@ pokemonList.forEach(pokemon => {
 });
 
 
-function divide(dividend, divisor) {
-    if (divisor === 0) {
-        return "You are trying to divided by zero"
-    } else {
-        let result = dividend / divisor;
-        return result;
-    }
-}
+document.write("<br>");
 
-console.log(divide(4, 2));
+//IIFE
+
+let pokemonRepository = (function () {
+    let pokemonList = [
+        { name: 'Muk', height: 1.2, types: ['poison'] },
+        { name: 'Charizard', height: 1.7, types: ['fire', 'flying'] },
+        { name: 'Smoochum', height: 0.4, types: ['psychic', 'ice'] }
+    ];
+
+    function add(pokemon) {
+        if (typeof pokemon === 'object') {
+            pokemonList.push(pokemon)
+        } else {
+            console.error("this is not an object")
+        };
+    }
+
+    function getAll() {
+        return pokemonList;
+    }
+
+    return {
+        add: add,
+        getAll: getAll
+    };
+})();
+console.log(pokemonRepository.getAll());
+let newPokemon = { name: 'Pikachu', height: 0.4, types: ['electric'] };
+pokemonRepository.add(newPokemon);
+pokemonRepository.add(3);
+console.log(pokemonRepository.getAll());
+
+//forEach for the IIFE
+
+pokemonRepository.getAll().forEach(pokemon => {
+    let getAllPokemonList = `${pokemon.name} height: ${pokemon.height} ${pokemon.types}`;
+    document.write(getAllPokemonList);
+});
