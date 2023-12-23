@@ -4,25 +4,6 @@ let pokemonList = [
     { name: 'Smoochum', height: 0.4, types: ['psychic', 'ice'] }
 ];
 
-// forEach Method
-pokemonList.forEach(function (pokemon) {
-    document.write(pokemon.name + " " + "height: " + pokemon.height + " " + "type: " + pokemon.types + " ");
-});
-
-
-document.write("<br>");
-
-pokemonList.forEach(pokemon => {
-    if (pokemon.height > 1.5) {
-        document.write(`${pokemon.name} height: ${pokemon.height} -Wow, That is big! type: ${pokemon.types} `);
-    } else {
-        document.write(`${pokemon.name} height: ${pokemon.height} type: ${pokemon.types} `);
-    }
-});
-
-
-document.write("<br>");
-
 //IIFE
 
 let pokemonRepository = (function () {
@@ -49,15 +30,15 @@ let pokemonRepository = (function () {
         getAll: getAll
     };
 })();
-console.log(pokemonRepository.getAll());
-let newPokemon = { name: 'Pikachu', height: 0.4, types: ['electric'] };
-pokemonRepository.add(newPokemon);
-pokemonRepository.add(3);
-console.log(pokemonRepository.getAll());
 
-//forEach for the IIFE
+pokemonDetails(pokemonRepository.getAll());
 
-pokemonRepository.getAll().forEach(pokemon => {
-    let getAllPokemonList = `${pokemon.name} height: ${pokemon.height} ${pokemon.types}`;
-    document.write(getAllPokemonList);
-});
+function pokemonDetails(pokemonRepository) {
+    pokemonRepository.forEach(pokemon => {
+        if (pokemon.height > 1.5) {
+            document.write(`${pokemon.name} height: ${pokemon.height} -Wow, That is big! type: ${pokemon.types} `);
+        } else {
+            document.write(`${pokemon.name} height: ${pokemon.height} type: ${pokemon.types} `);
+        }
+    });
+} 
