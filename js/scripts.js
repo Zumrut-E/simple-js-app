@@ -1,11 +1,3 @@
-let pokemonList = [
-    { name: 'Muk', height: 1.2, types: ['poison'] },
-    { name: 'Charizad', height: 1.7, types: ['fire', 'flying'] },
-    { name: 'Smoochum', height: 0.4, types: ['psychic', 'ice'] }
-];
-
-//IIFE
-
 let pokemonRepository = (function () {
     let pokemonList = [
         { name: 'Muk', height: 1.2, types: ['poison'] },
@@ -25,20 +17,53 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
+    function addListItem(pokemon) {
+        let pokemonList = document.querySelector(".pokemon-list");
+
+        // Create a list item
+        let listItem = document.createElement('li');
+
+        // Create a button element
+        let button = document.createElement('button');
+        button.innerText = pokemon.name;
+        button.classList.add('my-class');
+
+        // Append the button to the list item
+        listItem.appendChild(button);
+
+        pokemonList.appendChild(listItem);
+
+        /* Add Event listener to the Button
+         button.addEventListener('click', function () {
+             showDetails(pokemon);
+         }); */
+
+        // Advanced Exercise: Call the function to add the event listener to the button
+        addButtonClickListener(button, pokemon);
+    }
+
+    // New function showDetails
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem,
+        showDetails: showDetails,
     };
 })();
 
-pokemonDetails(pokemonRepository.getAll());
 
-function pokemonDetails(pokemonRepository) {
-    pokemonRepository.forEach(pokemon => {
-        if (pokemon.height > 1.5) {
-            document.write(`${pokemon.name} height: ${pokemon.height} -Wow, That is big! type: ${pokemon.types} `);
-        } else {
-            document.write(`${pokemon.name} height: ${pokemon.height} type: ${pokemon.types} `);
-        }
+// Function to add event listener to a button
+function addButtonClickListener(button, pokemon) {
+    button.addEventListener('click', function () {
+        pokemonRepository.showDetails(pokemon);
     });
-} 
+}
+
+
+pokemonRepository.getAll().forEach(pokemon => {
+    pokemonRepository.addListItem(pokemon);
+});
