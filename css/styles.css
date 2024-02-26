@@ -1,6 +1,53 @@
- body {
-     font-family: 'Arial', sans-serif;
-     line-height: 1.6;
-     background-color: #f2f2f2;
-     padding: 10px;
- }
+body {
+    background-color: bisque;
+}
+
+
+.jumbotron {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 0px;
+}
+
+.button-class {
+    padding: 12px 12px;
+    text-decoration: none;
+    display: inline-table;
+    width: 200px;
+    font-size: 24px;
+    margin: 12px 12px;
+    border: 2px solid;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+
+.list-group {
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+}
+
+.list-group-item {
+    display: grid;
+    
+    float: left;
+    text-align: center;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body img {
+    margin-bottom: 0;
+    max-width: 40%;
+    height: auto;
+}
+
+.modal-title {
+    text-transform: capitalize;
+    font-size: medium;
+}
+
+
